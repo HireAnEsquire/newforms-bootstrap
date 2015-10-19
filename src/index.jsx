@@ -62,7 +62,7 @@ function extend(dest, src) {
 }
 
 function errorMessage(message, errorClasses) {
-  return <span className="help-block">
+  return <span key={message} className="help-block">
     <span className={errorClasses}></span> {message}
   </span>
 }
@@ -325,7 +325,7 @@ var BootstrapField = React.createClass({
       }
 
       return (
-        <div className={this.getHorizontalControlClasses(field)}>
+        <div key={field.id} className={this.getHorizontalControlClasses(field)}>
           <div className="checkbox">
             {checkbox}
           </div>
@@ -335,9 +335,9 @@ var BootstrapField = React.createClass({
 
     if (this.isFileField(field)) {
       return (
-        <div>
+        <div key={field.id}>
           {field.labelTag({attrs: {className: 'control-label ' + this.getHorizontalLabelClasses()}})}
-          <div className={this.getHorizontalControlClasses(field)}>
+          <div key="widget" className={this.getHorizontalControlClasses(field)}>
             {field.asWidget(this.getWidgetAttrs(field))}
           </div>
         </div>
@@ -345,9 +345,9 @@ var BootstrapField = React.createClass({
     }
 
     return (
-      <div>
+      <div key={field.id}>
         {field.labelTag({attrs: {className: 'control-label ' + this.getHorizontalLabelClasses()}})}
-        <div className={this.getHorizontalControlClasses(field)}>
+        <div key="widget" className={this.getHorizontalControlClasses(field)}>
           {field.asWidget(this.getWidgetAttrs(field))}
           {this.getError(field, status)}
         </div>
