@@ -11,7 +11,7 @@
     "envify": "^3.3.0"
   },
   "peerDependencies": {
-    "newforms": "git://github.com/HireAnEsquire/newforms.git#build",
+    "newforms": "https://github.com/HireAnEsquire/newforms.git#build",
     "react": ">=0.13.0"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/insin/newforms-bootstrap.git#build"
+    "url": "https://github.com/insin/newforms-bootstrap.git#build"
   },
   "browserify": {
     "transform": [
