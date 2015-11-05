@@ -67,7 +67,7 @@ function extend(dest, src) {
 }
 
 function errorMessage(message, errorClasses) {
-  return React.createElement("span", {className: "help-block"}, 
+  return React.createElement("span", {key: message, className: "help-block"}, 
     React.createElement("span", {className: errorClasses}), " ", message
   )
 }
@@ -319,20 +319,13 @@ var BootstrapField = React.createClass({displayName: "BootstrapField",
   getControlWithLabel:function(field, status) {
 
     if (this.isBooleanField(field)) {
-      var checkbox = (
-          React.createElement("label", null, 
-            field.asWidget(), " ", field.label
-          )
-      );
-
-      if (!this.isHorizontalForm()) {
-        return checkbox;
-      }
-
       return (
-        React.createElement("div", {className: this.getHorizontalControlClasses(field)}, 
+        React.createElement("div", {key: field.id, className: this.getHorizontalControlClasses(field)}, 
           React.createElement("div", {className: "checkbox"}, 
-            checkbox
+            React.createElement("label", null, 
+              field.asWidget(), " ", field.label
+            ), 
+            this.getError(field, status)
           )
         )
       );
@@ -340,9 +333,9 @@ var BootstrapField = React.createClass({displayName: "BootstrapField",
 
     if (this.isFileField(field)) {
       return (
-        React.createElement("div", null, 
+        React.createElement("div", {key: field.id}, 
           field.labelTag({attrs: {className: 'control-label ' + this.getHorizontalLabelClasses()}}), 
-          React.createElement("div", {className: this.getHorizontalControlClasses(field)}, 
+          React.createElement("div", {key: "widget", className: this.getHorizontalControlClasses(field)}, 
             field.asWidget(this.getWidgetAttrs(field))
           )
         )
@@ -350,9 +343,9 @@ var BootstrapField = React.createClass({displayName: "BootstrapField",
     }
 
     return (
-      React.createElement("div", null, 
+      React.createElement("div", {key: field.id}, 
         field.labelTag({attrs: {className: 'control-label ' + this.getHorizontalLabelClasses()}}), 
-        React.createElement("div", {className: this.getHorizontalControlClasses(field)}, 
+        React.createElement("div", {key: "widget", className: this.getHorizontalControlClasses(field)}, 
           field.asWidget(this.getWidgetAttrs(field)), 
           this.getError(field, status)
         )
@@ -404,7 +397,7 @@ var BootstrapField = React.createClass({displayName: "BootstrapField",
   },
 
   isHorizontalForm:function() {
-    return this.props.horizontal.length > 0;
+    return Object.keys(this.props.horizontal).length > 0;
   },
 
   getHorizontalLabelClasses:function() {
