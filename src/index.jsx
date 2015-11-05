@@ -314,20 +314,13 @@ var BootstrapField = React.createClass({
   getControlWithLabel(field, status) {
 
     if (this.isBooleanField(field)) {
-      var checkbox = (
-          <label>
-            {field.asWidget()} {field.label}
-          </label>
-      );
-
-      if (!this.isHorizontalForm()) {
-        return checkbox;
-      }
-
       return (
         <div key={field.id} className={this.getHorizontalControlClasses(field)}>
           <div className="checkbox">
-            {checkbox}
+            <label>
+              {field.asWidget()} {field.label}
+            </label>
+            {this.getError(field, status)}
           </div>
         </div>
       );
@@ -399,7 +392,7 @@ var BootstrapField = React.createClass({
   },
 
   isHorizontalForm() {
-    return this.props.horizontal.length > 0;
+    return Object.keys(this.props.horizontal).length > 0;
   },
 
   getHorizontalLabelClasses() {
