@@ -11,7 +11,7 @@
     "envify": "^3.3.0"
   },
   "peerDependencies": {
-    "newforms": ">=0.12.0",
+    "newforms": "git://github.com/HireAnEsquire/newforms.git#react",
     "react": ">=0.13.0"
   },
   "devDependencies": {
