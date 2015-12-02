@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/insin/newforms-bootstrap.git#build"
+    "url": "git+https://github.com/insin/newforms-bootstrap.git#build-react-0.14"
   },
   "browserify": {
     "transform": [
